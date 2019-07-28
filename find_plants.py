@@ -53,9 +53,9 @@ def process_photos(photo_dir_path):
     for i in photos:
         result = at_plant(i)
         if result is not None:
-            print (result)
+            print(result)
             result_list.append(result)
     output_csv(result_list)
     return result_list
 
-print process_photos(photo_dir)
+print(process_photos(photo_dir))
