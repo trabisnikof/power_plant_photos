@@ -47,9 +47,9 @@ def output_csv(list):
 
 def process_photos(photo_dir_path):
     result_list = []
-    # A bit hacky, but gets the job done of dealing with folder trees. Could be expanded to include other extensions. 
+    # A bit hacky, but gets the job done of dealing with folder trees. Could be expanded to include other extensions.
     photos = [y for x in os.walk(photo_dir_path) for y in glob(os.path.join(x[0], '*.JPG'))]
-    print("Number of Photos: ", photos.len())
+    print("Number of Photos: {}".format( len(photos)))
     for i in photos:
         result = at_plant(i)
         if result is not None:
