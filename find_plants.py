@@ -7,19 +7,21 @@ cutoff_km = 1.0
 photo_dir = 'photos/'
 
 # Open the CSV with Plant Info
+# Data as of 28 Jul 2019 are EIA 860 and 923, 2018ER
 with open('plants.csv', 'rU') as f:
     reader = csv.reader(f)
     headers = next(reader, None)
     plants = list(reader)
 
 #Finds the closest plant using a simple brute force. Could be optimized....
+#Sometimes removing "KeyError" from the "except" in line 31 fixes issues as well
 def closest_plant(photo_path):
     data = gpsphoto.getGPSData(photo_path)
     try:
         photo_gps = (float(data['Latitude']), float(data['Longitude']))
         closest = None
         for i in plants:
-            plant_gps = (float(i[9]),float(i[10]))
+            plant_gps = (float(i[10]),float(i[11]))
             if closest is None:
                 closest = [haversine(plant_gps, photo_gps)] + i
             if closest[0] > haversine(plant_gps, photo_gps):
